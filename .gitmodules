@@ -1,0 +1,3 @@
+[submodule "submodules/www-sacred"]
+	path = submodules/www-sacred
+	url = https://github.com/internet-development/www-sacred
