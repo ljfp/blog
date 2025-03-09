@@ -7,7 +7,9 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      SRCL: path.resolve(__dirname, 'submodules/www-sacred-components')
+      '@components': path.resolve(__dirname, 'submodules/www-sacred/components'),
+      '@common': path.resolve(__dirname, 'submodules/www-sacred/common'),
+      '@root': path.resolve(__dirname, 'submodules/www-sacred'),
     },
   },
 })

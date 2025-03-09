@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
     "types": ["node"],
+    "paths": {
+      "@components/*": ["./submodules/www-sacred/components/*"],
+      "@common/*": ["./submodules/www-sacred/common/*"],
+      "@root/*": ["./submodules/www-sacred/*"]
+    }
   },
   "files": [],
   "references": [
