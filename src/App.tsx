@@ -1,5 +1,7 @@
 import './App.css'
 import '@root/global.scss'
+import * as React from 'react'
+import * as Utilities from '@common/utilities'
 
 // Import SRCL components
 import DefaultLayout from '@components/page/DefaultLayout'
@@ -18,13 +20,43 @@ import DebugGrid from '@components/DebugGrid'
 import BlockLoader from '@components/BlockLoader'
 
 function App() {
+  const [theme, setTheme] = React.useState<string>('');
+  
+  React.useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      setTheme(savedTheme);
+      Utilities.onHandleThemeChange(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const defaultTheme = prefersDark ? 'theme-dark' : '';
+      setTheme(defaultTheme);
+      Utilities.onHandleThemeChange(defaultTheme);
+    }
+  }, []);
+  
+  const toggleTheme = () => {
+    const newTheme = theme === 'theme-dark' ? '' : 'theme-dark';
+    setTheme(newTheme);
+    Utilities.onHandleThemeChange(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
   return (
     <DefaultLayout previewPixelSRC="/favicon.ico">
       <DebugGrid />
       <Navigation
         logo="✎"
         left={<ActionButton>ARCHIVE</ActionButton>}
-        right={<ActionButton>ABOUT</ActionButton>}
+        right={
+          <>
+            <ActionButton onClick={toggleTheme}>
+              {theme === 'theme-dark' ? 'LIGHT' : 'DARK'}
+            </ActionButton>
+            <ActionButton>ABOUT</ActionButton>
+          </>
+        }
       >
         <ActionButton>MY BLOG</ActionButton>
       </Navigation>
