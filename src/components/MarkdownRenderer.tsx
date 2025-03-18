@@ -1,10 +1,10 @@
+import * as React from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import Divider from '@components/Divider'
-import Avatar from '@components/Avatar'
-import Indent from '@components/Indent'
 import Breadcrumbs from '@components/BreadCrumbs'
 import CardDouble from '@components/CardDouble'
+import Row from '@components/Row'
 import { BlogPost } from '../utils/blog'
 
 interface MarkdownRendererProps {
@@ -12,31 +12,37 @@ interface MarkdownRendererProps {
 }
 
 export default function MarkdownRenderer({ post }: MarkdownRendererProps) {
-  const { meta, content } = post
-  
-  const breadcrumbItems = [
-    { name: 'Home', url: '/' },
-    ...(meta.category ? [{ name: meta.category, url: `/${meta.category.toLowerCase()}` }] : []),
-    { name: meta.title }
-  ]
+    const { meta, content } = post
+    
+    const breadcrumbItems = [
+      { name: 'Home', url: '/' },
+      { name: 'Archive', url: '/archive' },
+      ...(meta.category ? [{ name: meta.category, url: `/category/${meta.category.toLowerCase()}` }] : []),
+      { name: meta.title }
+    ]
   
   return (
     <CardDouble title={meta.title}>
       <Breadcrumbs items={breadcrumbItems} />
       <br />
-      <br />
-      <Avatar src={meta.authorImage || "https://github.com/github.png"} href="#">
-        <Indent>
-          {meta.author?.toUpperCase() || "ANONYMOUS"}
-          <br />
-          {meta.date}
-        </Indent>
-      </Avatar>
+      <Row>
+        <span style={{ opacity: 0.7 }}>{meta.date}</span>
+        {meta.tags && meta.tags.length > 0 && (
+          <span style={{ marginLeft: '16px', opacity: 0.7 }}>
+            {meta.tags.map((tag, i) => (
+              <React.Fragment key={tag}>
+                #{tag.toLowerCase().replace(/\s+/g, '-')}
+                {i < meta.tags.length - 1 ? ' ' : ''}
+              </React.Fragment>
+            ))}
+          </span>
+        )}
+      </Row>
       <br />
       <Divider type="DOUBLE" />
       <br />
       <br />
-      <br />
+      
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         components={{

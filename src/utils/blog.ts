@@ -62,3 +62,13 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime()
   })
 }
+
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  try {
+    const posts = await getAllPosts();
+    return posts.find(post => post.meta.slug === slug) || null;
+  } catch (error) {
+    console.error("Error getting post by slug:", error);
+    return null;
+  }
+}
