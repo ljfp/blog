@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "types": ["node"],
+    "baseUrl": ".",
     "paths": {
       "@components/*": ["./submodules/www-sacred/components/*"],
       "@common/*": ["./submodules/www-sacred/common/*"],
