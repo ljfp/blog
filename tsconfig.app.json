@@ -20,7 +20,16 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    
+    /* Path aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["./submodules/www-sacred/components/*"],
+      "@common/*": ["./submodules/www-sacred/common/*"],
+      "@root/*": ["./submodules/www-sacred/*"],
+      "@content/*": ["./content/*"]
+    }
   },
   "include": ["src"]
 }
