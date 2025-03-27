@@ -10,6 +10,8 @@ import DefaultLayout from '@components/page/DefaultLayout'
 import Navigation from '@components/Navigation'
 import ActionButton from '@components/ActionButton'
 import DebugGrid from '@components/DebugGrid'
+import SunIcon from '@components/svg/SunIcon'
+import MoonIcon from '@components/svg/MoonIcon'
 
 // Import pages
 import HomePage from './pages/HomePage'
@@ -51,9 +53,9 @@ function App() {
           right={
             <>
               <ActionButton onClick={toggleTheme}>
-                {theme === 'theme-dark' ? 'LIGHT' : 'DARK'}
+                {theme === 'theme-dark' ? <SunIcon size={18} /> : <MoonIcon size={18} />}
               </ActionButton>
-              <RouterActionButton to="/archive">ARCHIVE</RouterActionButton>
+              <RouterActionButton to="/archive">BLOG</RouterActionButton>
             </>
           }
         >
