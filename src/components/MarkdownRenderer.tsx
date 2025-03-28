@@ -32,7 +32,7 @@ export default function MarkdownRenderer({ post }: MarkdownRendererProps) {
             {meta.tags.map((tag, i) => (
               <React.Fragment key={tag}>
                 #{tag.toLowerCase().replace(/\s+/g, '-')}
-                {i < meta.tags.length - 1 ? ' ' : ''}
+                {i < (meta.tags?.length || 0) - 1 ? ' ' : ''}
               </React.Fragment>
             ))}
           </span>

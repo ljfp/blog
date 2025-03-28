@@ -26,7 +26,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   for (const path in modules) {
     try {
       const content = await modules[path]()
-      const { data, content: markdownContent } = matter(content)
+      const { data, content: markdownContent } = matter(content as string)
       
       // Extract slug from filename - adjust path handling
       const slug = path.split('/').pop()?.replace('.md', '') || ''
