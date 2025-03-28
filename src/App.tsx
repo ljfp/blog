@@ -52,10 +52,10 @@ function App() {
           left={<RouterActionButton to="/">HOME</RouterActionButton>}
           right={
             <>
+              <RouterActionButton to="/archive">BLOG</RouterActionButton>
               <ActionButton onClick={toggleTheme}>
                 {theme === 'theme-dark' ? <SunIcon size={18} /> : <MoonIcon size={18} />}
               </ActionButton>
-              <RouterActionButton to="/archive">BLOG</RouterActionButton>
             </>
           }
         >
